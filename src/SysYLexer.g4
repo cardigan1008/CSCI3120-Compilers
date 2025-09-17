@@ -1,81 +1,67 @@
 lexer grammar SysYLexer;
 
-CONST: 'const';
+// Step 1: Define keywords
+CONST    : 'const';
+INT      : 'int';
+VOID     : 'void';
+IF       : 'if';
+ELSE     : 'else';
+WHILE    : 'while';
+BREAK    : 'break';
+CONTINUE : 'continue';
+RETURN   : 'return';
 
-INT: 'int';
+// Step 2: Define operators
+PLUS   : '+';
+MINUS  : '-';
+MUL    : '*';
+DIV    : '/';
+MOD    : '%';
+ASSIGN : '=';
 
-VOID: 'void';
+// Step 3: Define comparison operators
+EQ   : '==';
+NEQ  : '!=';
+LT   : '<';
+GT   : '>';
+LE   : '<='; 
+GE   : '>=';
 
-IF: 'if';
+// Step 4: Define logical operators
+NOT : '!';
+AND : '&&';
+OR  : '||';
 
-ELSE: 'else';
+// Step 5: Define punctuation
+L_PAREN   : '(';
+R_PAREN   : ')';
+L_BRACE   : '{';
+R_BRACE   : '}';
+L_BRACKT  : /* TODO: left square bracket */;
+R_BRACKT  : /* TODO: right square bracket */;
+COMMA     : ',';
+SEMICOLON : ';';
 
-WHILE: 'while';
+// Step 6: Identifiers
+// Hint: start with a letter or '_', followed by letters, digits, or '_'
+IDENT : /* TODO */;
 
-BREAK: 'break';
+// Step 7: Integer constants
+// Hint: include decimal, octal, and hex
+INTEGER_CONST
+    : '0'
+    | [1-9][0-9]*
+    | /* TODO: octal */
+    | /* TODO: hex */
+    ;
 
-CONTINUE: 'continue';
+// Step 8: Whitespace and comments (skip them)
 
-RETURN: 'return';
+// Task 1: Match whitespace (space, tab, newline, etc.) and skip
+WS : /* TODO */ -> skip;
 
-PLUS: '+';
+// Task 2: Match single-line comments starting with '//' until newline
+LINE_COMMENT : /* TODO */ -> skip;
 
-MINUS: '-';
-
-MUL: '*';
-
-DIV: '/';
-
-MOD: '%';
-
-ASSIGN: '=';
-
-EQ: '==';
-
-NEQ: '!=';
-
-LT: '<';
-
-GT: '>';
-
-LE: '<=';
-
-GE: '>=';
-
-NOT: '!';
-
-AND: '&&';
-
-OR: '||';
-
-L_PAREN: '(';
-
-R_PAREN: ')';
-
-L_BRACE: '{';
-
-R_BRACE: '}';
-
-L_BRACKT: '[';
-
-R_BRACKT: ']';
-
-COMMA: ',';
-
-SEMICOLON: ';';
-
-IDENT: # TODO
-
-INTEGER_CONST: # TODO
-
-WS
-  : # TODO
-   ;
-
-LINE_COMMENT
-  : # TODO
-   ;
-
-MULTILINE_COMMENT
-  : # TODO
-   ;
+// Task 3: Match multi-line comments between '/*' and '*/'
+MULTILINE_COMMENT : /* TODO */ -> skip;
