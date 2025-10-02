@@ -1,3 +1,6 @@
+// Note: You can simply reuse the SysYLexer you wrote in Lab1.
+// If needed, you may copy and replace it here.
+
 lexer grammar SysYLexer;
 
 // Step 1: Define keywords
