@@ -31,10 +31,7 @@ public class LLVMIRGenerator extends SysYParserBaseVisitor<LLVMValueRef> {
     private Stack<LLVMBasicBlockRef> breakBlockStack;
 
     // ===== Constructor: Initialize LLVM environment =====
-    public LLVMIRGenerator() {
-        // TODO: Initialize LLVM components
-        // Hint: LLVMLinkInMCJIT(), LLVMInitializeNativeTarget(), etc.
-        
+    public LLVMIRGenerator() {        
         // TODO: Create module and builder
         llvmModule = /* TODO */;
         irBuilder = /* TODO */;
@@ -50,6 +47,14 @@ public class LLVMIRGenerator extends SysYParserBaseVisitor<LLVMValueRef> {
         functionTypeMap = /* TODO */;
         continueBlockStack = /* TODO */;
         breakBlockStack = /* TODO */;
+    }
+
+    // ===== Block handling =====
+    @Override
+    public LLVMValueRef visitBlock(SysYParser.BlockContext ctx) {
+        // TODO: Handle block statements
+        // Hint: Simply visit all child statements
+        return /* TODO */;
     }
 
     // ===== Part 1: Expression handling =====
@@ -359,49 +364,5 @@ public class LLVMIRGenerator extends SysYParserBaseVisitor<LLVMValueRef> {
         // TODO: Dispose builder and module
         /* TODO */; // LLVMDisposeBuilder
         /* TODO */; // LLVMDisposeModule
-    }
-
-    // ===== Helper methods =====
-    
-    /**
-     * Parse integer literals (decimal, octal, hexadecimal)
-     */
-    private long parseNumber(String numberStr) {
-        // TODO: Implement number parsing
-        if (numberStr.startsWith("0x") || numberStr.startsWith("0X")) {
-            // Hexadecimal
-            return /* TODO */;
-        } else if (numberStr.startsWith("0") && numberStr.length() > 1) {
-            // Octal
-            return /* TODO */;
-        } else {
-            // Decimal
-            return /* TODO */;
-        }
-    }
-
-    /**
-     * Get variable pointer from symbol table or global variables
-     */
-    private LLVMValueRef getVariablePointer(String varName) {
-        // TODO: Check local symbol table first, then global variables
-        if (symbolTable != null && symbolTable.containsKey(varName)) {
-            return /* TODO */;
-        } else {
-            return /* TODO */; // LLVMGetNamedGlobal
-        }
-    }
-
-    // ===== Getters for testing/debugging =====
-    public LLVMValueRef getCurrentFunction() {
-        return currentFunction;
-    }
-
-    public Stack<LLVMBasicBlockRef> getContinueBlockStack() {
-        return continueBlockStack;
-    }
-
-    public Stack<LLVMBasicBlockRef> getBreakBlockStack() {
-        return breakBlockStack;
     }
 }
