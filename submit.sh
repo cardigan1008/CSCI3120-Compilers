@@ -37,6 +37,3 @@ else
   echo ""
   echo "generate submit.zip"
 fi
-
-
-

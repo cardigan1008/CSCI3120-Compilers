@@ -1,55 +1,51 @@
-// Lab2: SysY Parser
-// Language: Java 11 + ANTLR4
+// Lab3: LLVM IR Code Generation
+// Language: Java 11 + ANTLR4 + LLVM
 //
-// In this lab, you will implement a parser and code formatter for SysY.
+// In this lab, you will implement an LLVM IR generator for SysY.
 // Each step contains a TODO placeholder to be filled by students.
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+import org.bytedeco.javacpp.BytePointer;
 import java.io.IOException;
+import org.bytedeco.llvm.LLVM.*;
+import static org.bytedeco.llvm.global.LLVM.*;
 
 public class Main {
-    // Step 0: Create custom error listeners for lexer and parser
-    private static final MyErrorListener myErrorListener = /* TODO */;
-    private static final MyErrorListener2 myErrorListener2 = /* TODO */;
-
+    public static final BytePointer error = new BytePointer();
+    
     public static void main(String[] args) throws IOException {
-        if (args.length < 1) {
-            System.err.println("input path is required");
+        // Step 0: Check command line arguments
+        if (args.length < 2) {
+            System.err.println("Usage: java Main <input_file> <output_file>");
             return;
         }
-        String source = args[0];
+        
+        String inputFile = args[0];
+        String outputFile = args[1];
 
-        // Step 1: Load the source file into a CharStream
+        // Step 1: Initialize LLVM core components
+        /* TODO: Initialize LLVM core, MCJIT, native target, etc. */
+        
+        // Step 2: Load the source file into a CharStream
         CharStream input = /* TODO */;
 
-        // Step 2: Create a SysYLexer instance with the CharStream
+        // Step 3: Create lexer and parser
         SysYLexer sysYLexer = /* TODO */;
-
-        // Step 3: Remove default error listeners and attach your MyErrorListener
-        /* TODO */
-
-        // Step 4: Create a CommonTokenStream with the lexer
         CommonTokenStream tokens = /* TODO */;
-
-        // Step 5: Create a SysYParser instance with the token stream
         SysYParser sysYParser = /* TODO */;
 
-        // Step 6: Remove default error listeners and attach your MyErrorListener2
-        /* TODO */
+        // Step 4: Parse the program to get the syntax tree
+        ParseTree tree = /* TODO */;
 
-        // Step 7: Parse the program to get the syntax tree
-        SysYParser.ProgramContext tree = /* TODO */;
+        // Step 5: Create LLVM IR generator and visit the parse tree
+        LLVMIRGenerator llvmVisitor = /* TODO */;
+        /* TODO */ // visit the tree
 
-        // Step 8: If syntax errors exist, stop here (MyErrorListener2 already prints them)
-        if (/* TODO */) {
-            // do nothing
-        } else {
-            // Step 9: Otherwise, visit the parse tree with SysYVisitor to format code
-            SysYVisitor visitor = /* TODO */;
-            /* TODO */ // traverse the tree
-            String formattedCode = /* TODO */;
-            System.out.println(formattedCode);
-        }
+        // Step 6: Output the generated LLVM IR to file
+        /* TODO */ // print to file
+
+        // Step 7: Clean up resources
+        /* TODO */ // dispose resources
     }
 }

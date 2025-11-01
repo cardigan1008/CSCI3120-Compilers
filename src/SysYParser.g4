@@ -1,8 +1,5 @@
-// Note: This is only one possible implementation. 
-// It uses ANTLR4’s ability to handle precedence and left recursion 
-// to simplify expression/condition rules. 
-// You may also choose to directly translate the SysY definition 
-// (with AddExp, MulExp, etc.) if you prefer.
+// Note: You can simply reuse the SysYLexer you wrote in Lab2.
+// If needed, you may copy and replace it here.
 
 parser grammar SysYParser;
 
